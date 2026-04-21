@@ -1,0 +1,70 @@
+{
+  "CategoryId": 6327,
+  "Name": "Carbon credits",
+  "Path": "/Business-farming-industry/Carbon-credits",
+  "CanListAuctions": true,
+  "CanListClassifieds": true,
+  "CanRelist": true,
+  "LegalNotice": "Compliance Declaration\nI confirm that these carbon credits are certified and registered with a carbon credits registry. ",
+  "DefaultDuration": 14,
+  "AllowedDurations": [2, 3, 4, 5, 6, 7, 10, 14],
+  "Fees": {
+    "Bundle": 15,
+    "EndDate": 0.25,
+    "Feature": 10,
+    "Gallery": 2,
+    "Listing": 29,
+    "Reserve": 0.25,
+    "Subtitle": 0.55,
+    "TenDays": 0.25,
+    "ListingFeeTiers": [
+      {
+        "MinimumTierPrice": 0,
+        "FixedFee": 29
+      }
+    ],
+    "SecondCategory": 0.99
+  },
+  "FreePhotoCount": 20,
+  "MaximumPhotoCount": 20,
+  "IsFreeToRelist": true,
+  "Promotions": [
+    {
+      "Id": 1,
+      "Name": "Basic",
+      "Description": "Lowest position in category",
+      "Price": 0,
+      "MinimumPhotoCount": 0
+    },
+    {
+      "Id": 2,
+      "Name": "Gallery",
+      "Description": "Good position in category",
+      "Price": 2,
+      "OriginalPrice": 2,
+      "MinimumPhotoCount": 0
+    },
+    {
+      "Id": 3,
+      "Name": "Feature",
+      "Description": "Better position in category",
+      "Price": 10,
+      "OriginalPrice": 10,
+      "Recommended": true,
+      "MinimumPhotoCount": 0
+    },
+    {
+      "Id": 4,
+      "Name": "Feature Combo",
+      "Description": "Best position in category \nIncludes benefits of Feature \nHighlights listing in search results",
+      "Price": 15,
+      "OriginalPrice": 15,
+      "MinimumPhotoCount": 0
+    }
+  ],
+  "EmbeddedContentOptions": [],
+  "MaximumTitleLength": 80,
+  "AreaOfBusiness": 1,
+  "DefaultRelistDuration": 7,
+  "CanUseCounterOffers": true
+}
