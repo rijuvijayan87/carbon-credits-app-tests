@@ -49,17 +49,22 @@ pnpm test:run -- <path_to_file>
 pnpm test:run -- src/tests/category.test.ts
 ```
 
-## Linting & Formatting
+## CI runs
 
-```bash
+Tests run automatically via GitHub Actions [.github/workflows/test.yaml](.github/workflows/test.yaml).
+
 # Run ESLint
+
 pnpm lint
 
 # Run ESLint with auto-fix
+
 pnpm lint:fix
 
 # Format code with Prettier
+
 pnpm format
+
 ```
 
 ## Contributing
@@ -69,3 +74,4 @@ pnpm format
 3. Ensure all tests pass: `pnpm test:run`
 4. Ensure Commit message complies to [Conventional Commits](https://www.conventionalcommits.org/). Commit message validation are enforced via git hooks
 5. Open a pull request
+```
