@@ -11,6 +11,8 @@ const env: Environment = ENVIRONMENTS.includes(
   ? (process.env.TEST_ENV as Environment)
   : "dev";
 
+console.log(`TEST_ENV: ${env}`);
+
 dotenv.config({
   path: path.resolve(process.cwd(), `config/.env.${env}`),
   quiet: true,

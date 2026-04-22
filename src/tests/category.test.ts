@@ -4,7 +4,7 @@ import type { Category } from "../models/category.js";
 import { getEnvVariable } from "../config/environment.js";
 
 const url = getEnvVariable("APP_URL");
-console.log(`APP URL: ${url}`);
+console.log(`APP_URL: ${url}`);
 
 let categoryResponse: Category;
 
