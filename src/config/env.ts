@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import path from "node:path";
-import { z } from "zod";
+import { envSchema } from "./envSchema";
 
 const ENVIRONMENTS = ["dev", "stg", "prod"] as const;
 type Environment = (typeof ENVIRONMENTS)[number];
@@ -11,25 +11,20 @@ const env: Environment = ENVIRONMENTS.includes(
   ? (process.env.TEST_ENV as Environment)
   : "dev";
 
-console.log(`TEST_ENV: ${env}`);
-
+// load env from `config` folder
 dotenv.config({
   path: path.resolve(process.cwd(), `config/.env.${env}`),
   quiet: true,
 });
 
-const envSchema = z.object({
-  APP_URL: z.string(),
-});
+const parsedEnvs = envSchema.safeParse(process.env);
 
-const parsed = envSchema.safeParse(process.env);
-
-if (!parsed.success) {
+if (!parsedEnvs.success) {
   console.error("❌ Invalid environment variables:");
-  parsed.error.issues.forEach((issue) => {
+  parsedEnvs.error.issues.forEach((issue) => {
     console.error(`  ${issue.path.join(".")}: ${issue.message}`);
   });
   process.exit(1);
 }
 
-export const config = parsed.data;
+export const config = parsedEnvs.data;
