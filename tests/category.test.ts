@@ -1,15 +1,17 @@
 import { beforeAll, describe, expect, it } from "vitest";
-import { getCategory } from "../src/index.js";
-import type { Category } from "../src/models/category.js";
-import { getEnvVariable } from "../src/config/environment.js";
+import { getCategory } from "../src/index";
+import type { Category } from "../src/models/category";
+import { logger } from "../src/util/logger";
+import { config } from "../src/config/env";
 
-const url = getEnvVariable("APP_URL");
-console.log(`APP_URL: ${url}`);
+const appUrl = config.APP_URL;
+
+logger.info(`APP_URL: ${appUrl}`);
 
 let categoryResponse: Category;
 
 beforeAll(async () => {
-  categoryResponse = await getCategory(url);
+  categoryResponse = await getCategory(appUrl);
 });
 
 describe("Carbon Credit App tests - Acceptance criteria", () => {
