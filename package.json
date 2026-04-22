@@ -22,6 +22,10 @@
   },
   "license": "MIT",
   "packageManager": "pnpm@10.26.0",
+  "engines": {
+    "node": ">=22.15.0",
+    "pnpm": ">=10.26.0"
+  },
   "lint-staged": {
     "*.{js,mjs,cjs,ts,mts,cts}": [
       "prettier --write",

@@ -14,14 +14,23 @@ API test framework for the Carbon Credits application.
 
 ## Prerequisites
 
-- Node.js >= 18
-- pnpm >= 10.26.0
+- **Node.js** `22.15.0` (pinned in `.nvmrc` — see [Setup](#setup) for install instructions)
+- **pnpm** `10.26.0` (pinned in `package.json` via `packageManager`. (this is setup via [Corepack](https://nodejs.org/api/corepack.html)). Make sure to run the `corepack` command in [Setup](#setup) below.
 
 ## Setup
 
 ```bash
+# Clone the repo
 git clone git@github.com:rijuvijayan87/carbon-credits-app-tests.git
 cd carbon-credits-app-tests
+
+# Install and switch to the correct Node version (please make sure nvm is installed)
+nvm install
+
+# enable Corepack for pnpm (to install correct pnpm version)
+corepack enable pnpm
+
+# Install dependencies
 pnpm install
 ```
 
