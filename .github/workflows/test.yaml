@@ -4,6 +4,35 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "info"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      tags:
+        description: "Test scenario tags"
+        required: true
+        default: "@smoke"
+        type: choice
+        options:
+          - "@smoke"
+          - "@sanity"
+          - "@regression"
+      environment:
+        description: "Environment to run tests against"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - stg
+          - prod
 
 jobs:
   test:
@@ -18,8 +47,14 @@ jobs:
       - name: deps installation
         run: pnpm install --frozen-lockfile
       - name: Run tests
-        run: pnpm test:run
+        run: |
+          echo "TEST TAGS: $TEST_TAGS"
+          echo "TEST ENV: $TEST_ENV"
+          echo "LOG LEVEL: $LOG_LEVEL"
+          echo "CI: $CI"
+          pnpm test:run
         env:
-          TEST_ENV: dev
-          LOG_LEVEL: INFO
+          TEST_TAGS: ${{ inputs.tags }}
+          TEST_ENV: ${{ inputs.environment }}
+          LOG_LEVEL: ${{ inputs.logLevel }}
           CI: 1
