@@ -1,9 +1,11 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { getCategory } from "../index.js";
 import type { Category } from "../models/category.js";
+import { getEnvVariable } from "../config/environment.js";
 
-const url =
-  "https://api.tmsandbox.co.nz/v1/Categories/6327/Details.json?catalogue=true";
+const url = getEnvVariable("APP_URL");
+console.log(`APP_URL: ${url}`);
+
 let categoryResponse: Category;
 
 beforeAll(async () => {
