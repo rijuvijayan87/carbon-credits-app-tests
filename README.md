@@ -19,18 +19,16 @@ API test framework for the Carbon Credits application.
 
 ## Setup
 
-```bash
-# Clone the repo
-git clone git@github.com:rijuvijayan87/carbon-credits-app-tests.git
-cd carbon-credits-app-tests
+> This assumes that you have already cloned the repo and are in project's root directory.
 
-# Install and switch to the correct Node version (please make sure nvm is installed)
+```bash
+# Install and switch to the pinned correct Node version (please make sure nvm is installed)
 nvm install
 
-# enable Corepack for pnpm (to install correct pnpm version)
+# Setup correct pnpm version
 corepack enable pnpm
 
-# Install dependencies
+# Install project deps
 pnpm install
 ```
 
@@ -40,31 +38,29 @@ pnpm install
 # Run all tests
 pnpm test:run
 
-# Watch mode for dev
+# Watch mode while doing dev
 pnpm test:watch
 
-# Specific file
+# Run specific file
 pnpm test:run -- <path_to_file>
-# e.g.
-pnpm test:run -- src/tests/category.test.ts
+# e.g. pnpm test:run -- src/tests/category.test.ts
 ```
 
 ## CI runs
 
 Tests run automatically via GitHub Actions [.github/workflows/test.yaml](.github/workflows/test.yaml).
 
-# Run ESLint
+## Code Formatting
 
+```bash
+# Run linting across the codebase
 pnpm lint
 
-# Run ESLint with auto-fix
-
+# Run lint with auto-fix
 pnpm lint:fix
 
 # Format code with Prettier
-
 pnpm format
-
 ```
 
 ## Contributing
@@ -74,4 +70,3 @@ pnpm format
 3. Ensure all tests pass: `pnpm test:run`
 4. Ensure Commit message complies to [Conventional Commits](https://www.conventionalcommits.org/). Commit message validation are enforced via git hooks
 5. Open a pull request
-```
