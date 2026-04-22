@@ -59,3 +59,12 @@ jobs:
           TEST_ENV: ${{ inputs.environment || 'dev' }}
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
           CI: 1
+      - name: Generate Allure report
+        if: always()
+        run: pnpm dlx allure-commandline generate allure-results --clean -o allure-report
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
