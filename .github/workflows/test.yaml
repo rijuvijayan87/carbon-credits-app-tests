@@ -61,7 +61,7 @@ jobs:
           CI: 1
       - name: Generate Allure report
         if: always()
-        run: pnpm dlx allure-commandline generate allure-results --clean -o allure-report
+        run: pnpm allure:generate
       - name: Upload Allure report
         if: always()
         uses: actions/upload-artifact@v4

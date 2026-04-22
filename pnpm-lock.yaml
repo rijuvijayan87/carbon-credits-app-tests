@@ -39,6 +39,9 @@ importers:
       '@types/node':
         specifier: ^25.6.0
         version: 25.6.0
+      allure-commandline:
+        specifier: ^2.38.1
+        version: 2.38.1
       allure-js-commons:
         specifier: ^3.7.1
         version: 3.7.1
@@ -657,6 +660,10 @@ packages:
 
   ajv@8.18.0:
     resolution: {integrity: sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A==}
+
+  allure-commandline@2.38.1:
+    resolution: {integrity: sha512-qkoEz8/Y+K6XRlkJFmPEsT4bJFa2nHmYMkp6aEg6HaM4uewpJRI0jJsQhVWl8xZ6k6VtVr3vWnsAMPL5LPthvA==}
+    hasBin: true
 
   allure-js-commons@3.7.1:
     resolution: {integrity: sha512-S8tFymEzgWpp3ITGFu01z2+6KYdiNZC3sX8FbJaNgLoLWBHDBNQ0lq4lTQgkVjV6IN4TIUrnYfa2YuytWpv8WA==}
@@ -2305,6 +2312,8 @@ snapshots:
       fast-uri: 3.1.0
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
+
+  allure-commandline@2.38.1: {}
 
   allure-js-commons@3.7.1:
     dependencies:

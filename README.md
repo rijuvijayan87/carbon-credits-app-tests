@@ -50,39 +50,106 @@ Each `.env.*` file captures env specific configuration. An example of such env v
 
 ## Running Tests
 
+Tests are tagged as `@smoke`, `@sanity`, or `@regression`.
+
+> tags are defined in individual [tests](./tests).
+> e.g. `{ tags: ["@smoke"] }`,
+
 ```bash
-# Run all tests (defaults to dev)
-pnpm test:run
+# run smoke tests
+pnpm test:smoke
 
-# Run against a specific environment
-TEST_ENV=dev pnpm test:run
-TEST_ENV=stg pnpm test:run # ⚠️ this won't work until the ./config/.env.stg is updated
-TEST_ENV=prod pnpm test:run # ⚠️ this won't work until the ./config/.env.prod is updated
+# run sanity tests
+pnpm test:sanity
 
-# Watch mode while doing dev
+# run sanity tests
+pnpm test:regression
+
+# Override environment
+TEST_ENV=stg pnpm test:smoke  # ⚠️ update config/.env.stg before use
+TEST_ENV=prod pnpm test:smoke # ⚠️ update config/.env.prod before use
+
+# Watch mode
 pnpm test:watch
 
 # Run specific file
 pnpm test:run -- <path_to_file>
-# e.g. pnpm test:run -- src/tests/category.test.ts
+# e.g. pnpm test:regression -- src/tests/category.test.ts
+```
+
+## Allure Reports
+
+Allure results are written to `allure-results/` automatically when tests run.
+
+```bash
+# Generate + open report in one command
+pnpm allure:serve
+
+# Or generate then open separately
+pnpm allure:generate
+pnpm allure:open
+```
+
+## Docker
+
+Run tests in Docker and view the allure report locally.
+
+```bash
+# Build
+docker build -f docker/Dockerfile -t carbon-credits-tests .
+
+# Run tests. this is currently a hack.
+#i.e. to volume mount reports into local disk and serve the report from there
+# therefore make sure you run this command from the `carbon-credits-app-tests` repo
+docker run --rm \
+  -e TEST_TAGS=regression \
+  -e TEST_ENV=dev \
+  -v $(pwd)/allure-results:/app/allure-results \
+  carbon-credits-tests
+
+# Serve the report
+pnpm allure:serve
 ```
 
 ## CI runs
 
 Tests run automatically via GitHub Actions [.github/workflows/test.yaml](.github/workflows/test.yaml).
 
-## Code Formatting
+### Triggers
 
-```bash
-# Run linting across the codebase
-pnpm lint
+| Trigger             | Behaviour                                            |
+| ------------------- | ---------------------------------------------------- |
+| `push` to `main`    | Runs automatically with defaults                     |
+| `pull_request`      | Runs automatically with defaults                     |
+| `workflow_dispatch` | Manual run from GitHub Actions UI with custom inputs |
 
-# Run lint with auto-fix
-pnpm lint:fix
+### Defaults (push / pull_request)
 
-# Format code with Prettier
-pnpm format
-```
+| Variable    | Default      |
+| ----------- | ------------ |
+| `TEST_TAGS` | `regression` |
+| `TEST_ENV`  | `dev`        |
+| `LOG_LEVEL` | `info`       |
+
+### Manual run inputs (workflow_dispatch)
+
+Trigger a run from **Actions → Carbon Credits API Tests → Run workflow**:
+
+| Input         | Options                         | Default |
+| ------------- | ------------------------------- | ------- |
+| `tags`        | `smoke`, `sanity`, `regression` | `smoke` |
+| `environment` | `dev`, `stg`, `prod`            | `dev`   |
+| `logLevel`    | `info`, `warning`, `debug`      | `info`  |
+
+> `workflow_dispatch` is only available when the workflow file exists on the default branch (`main`).
+
+### Allure Report Artifact
+
+After every run the Allure report is uploaded as a GitHub Actions artifact. To access it:
+
+1. Go to **Actions → your run → Artifacts**
+2. Download `allure-report.zip`
+3. Unzip and run `pnpm allure:open` or serve it with `pnpm dlx serve allure-report`
 
 ## Contributing
 
