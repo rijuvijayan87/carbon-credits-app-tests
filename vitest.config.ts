@@ -1,4 +1,5 @@
 import { defineConfig } from "vitest/config";
+import AllureReporter from "allure-vitest/reporter";
 
 export default defineConfig({
   test: {
@@ -9,6 +10,12 @@ export default defineConfig({
       { name: "@smoke", description: "Bare-minimum confidence gate" },
       { name: "@sanity", description: "Broader shape and contract sanity" },
       { name: "@regression", description: "Full suite, runs on every push" },
+    ],
+    reporters: [
+      "default",
+      new AllureReporter({
+        resultsDir: "allure-results",
+      }),
     ],
   },
 });
