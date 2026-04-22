@@ -55,7 +55,7 @@ jobs:
 
           pnpm test:$TEST_TAGS
         env:
-          TEST_TAGS: ${{ inputs.tags || '@regression' }}
+          TEST_TAGS: ${{ inputs.tags || 'regression' }}
           TEST_ENV: ${{ inputs.environment || 'dev' }}
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
           CI: 1
