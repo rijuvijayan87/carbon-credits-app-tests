@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v6
       - name: setup node
         uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
       - run: corepack enable
       - name: deps installation
         run: pnpm install --frozen-lockfile
