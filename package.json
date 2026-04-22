@@ -18,6 +18,9 @@
     "format:check": "prettier --check .",
     "test:watch": "vitest",
     "test:run": "vitest run",
+    "test:smoke": "vitest run --tagsFilter @smoke",
+    "test:sanity": "vitest run --tagsFilter @sanity",
+    "test:regression": "vitest run --tagsFilter @regression",
     "prepare": "husky"
   },
   "license": "MIT",
