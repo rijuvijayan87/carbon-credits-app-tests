@@ -18,12 +18,12 @@ on:
       tags:
         description: "Test scenario tags"
         required: true
-        default: "@smoke"
+        default: "smoke"
         type: choice
         options:
-          - "@smoke"
-          - "@sanity"
-          - "@regression"
+          - "smoke"
+          - "sanity"
+          - "regression"
       environment:
         description: "Environment to run tests against"
         required: true
@@ -52,9 +52,10 @@ jobs:
           echo "TEST ENV: $TEST_ENV"
           echo "LOG LEVEL: $LOG_LEVEL"
           echo "CI: $CI"
-          pnpm test:run
+
+          pnpm test:$TEST_TAGS
         env:
-          TEST_TAGS: ${{ inputs.tags }}
-          TEST_ENV: ${{ inputs.environment }}
-          LOG_LEVEL: ${{ inputs.logLevel }}
+          TEST_TAGS: ${{ inputs.tags || 'regression' }}
+          TEST_ENV: ${{ inputs.environment || 'dev' }}
+          LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
           CI: 1
