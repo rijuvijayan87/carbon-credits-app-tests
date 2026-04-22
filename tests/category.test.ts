@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
-import { getCategory } from "../index.js";
-import type { Category } from "../models/category.js";
-import { getEnvVariable } from "../config/environment.js";
+import { getCategory } from "../src/index.js";
+import type { Category } from "../src/models/category.js";
+import { getEnvVariable } from "../src/config/environment.js";
 
 const url = getEnvVariable("APP_URL");
 console.log(`APP_URL: ${url}`);
