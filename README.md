@@ -32,11 +32,32 @@ corepack enable pnpm
 pnpm install
 ```
 
+## Environment Configuration
+
+Tests run against different environments controlled by the `TEST_ENV` variable.
+
+| `TEST_ENV` | Config file        | Test Status                                       |
+| ---------- | ------------------ | ------------------------------------------------- |
+| `dev`      | `config/.env.dev`  | ✅ Working                                        |
+| `stg`      | `config/.env.stg`  | ⚠️ `APP_URL` is a placeholder — update before use |
+| `prod`     | `config/.env.prod` | ⚠️ `APP_URL` is a placeholder — update before use |
+
+> config file defaults to `dev` if not set.
+
+Each `.env.*` file captures env specific configuration. An example of such env variable is in [dev config](./config/.env.dev)
+
+> ⚠️ never commit real URLs or secrets. we will use sops with gpg key later to encrypt and decrypt config/.env.\* files
+
 ## Running Tests
 
 ```bash
-# Run all tests
+# Run all tests (defaults to dev)
 pnpm test:run
+
+# Run against a specific environment
+TEST_ENV=dev pnpm test:run
+TEST_ENV=stg pnpm test:run # ⚠️ this won't work until the ./config/.env.stg is updated
+TEST_ENV=prod pnpm test:run # ⚠️ this won't work until the ./config/.env.prod is updated
 
 # Watch mode while doing dev
 pnpm test:watch
