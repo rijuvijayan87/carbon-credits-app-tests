@@ -7,9 +7,12 @@ export default defineConfig({
     testTimeout: 10000,
     include: ["tests/**/*.test.ts"],
     tags: [
-      { name: "@smoke", description: "Bare-minimum confidence gate" },
-      { name: "@sanity", description: "Broader shape and contract sanity" },
-      { name: "@regression", description: "Full suite, runs on every push" },
+      {
+        name: "@smoke",
+        description: "minimum required test as confidence gate",
+      },
+      { name: "@sanity", description: "response shape and contract sanity" },
+      { name: "@regression", description: "full suite, runs on every push" },
     ],
     reporters: [
       "default",

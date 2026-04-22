@@ -21,6 +21,9 @@
     "test:smoke": "vitest run --tagsFilter @smoke",
     "test:sanity": "vitest run --tagsFilter @sanity",
     "test:regression": "vitest run --tagsFilter @regression",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:serve": "allure serve allure-results",
+    "allure:open": "allure open allure-report",
     "prepare": "husky"
   },
   "license": "MIT",
@@ -41,6 +44,7 @@
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@types/node": "^25.6.0",
+    "allure-commandline": "^2.38.1",
     "allure-js-commons": "^3.7.1",
     "allure-vitest": "^3.7.1",
     "eslint": "^10.2.1",
