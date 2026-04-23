@@ -1,16 +1,18 @@
 import { beforeAll, describe, expect, it } from "vitest";
-import { fetchCategory } from "../src/index";
 import { logger } from "../src/util/logger";
 import { config } from "../src/config/env";
+import { retrieveCategory } from "./fixtures/categoryFixture";
+import { CategoryTestService } from "./service/categoryService";
 
 const RESPONSE_TIME_THRESHOLD_MS = 2000;
 
 let responseTimeMs: number;
+const categoryService = new CategoryTestService();
 
 beforeAll(async () => {
   logger.info(`fetching category from: ${config.APP_URL}`);
   const start = performance.now();
-  await fetchCategory(config.APP_URL);
+  await retrieveCategory(config.APP_URL, categoryService);
   responseTimeMs = performance.now() - start;
   logger.info(`response time: ${responseTimeMs.toFixed(2)}ms`);
 });
